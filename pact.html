@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PACT Trust</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #000000;
+    background-color:#FFFFFF;
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color:#42B0E2;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }  
+  .jumbotron {
+    background-color: #42B0E2;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color:#42B0E2;
+    font-size: 50px;
+  }
+  .logo {
+    color:#42B0E2;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+  .panel {
+    border: 1px solid #f4511e; 
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+    border: 1px solid #f4511e;
+    background-color: #fff !important;
+    color: #f4511e;
+  }
+  .panel-heading {
+    color: #fff !important;
+    background-color: #f4511e !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #f4511e;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    background-color: #42B0E2;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #42B0E2 !important;
+    background-color: #ffffff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #f4511e;
+  }
+  
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+	
+  .gallery {
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  background-color: white ;
+  /* [disabled]min-width: 400px;
+*/
+  padding-bottom: 35px;
+  padding-top: 0px;
+  margin-top: -5px;
+  margin-bottom: 0px;
+}
+.gallery .col h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #52BAD5;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#abtus{
+			  margin:5%;
+			  padding:2%;
+			  border:solid 2px #92BDCC;
+			  box-shadow:5px 5px 10px black ;
+			  background-color:#d83f87;
+			  position: relative;
+		  }
+	#font1,#font2,#font3,#font4{
+			  text-decoration-line: none;
+			  font-size:200%;
+			  margin:5%;
+			  color: white;
+		  }
+	#linkspan1,#linkspan2,#linkspan3,#linkspan4{
+			  font-size: 50%;
+			  margin:5px;
+			  
+		  }
+	#font1:hover, #linkspan1:hover{
+			  color:#42B0E2; 
+			   background-color: white;
+		  }
+	#font2:hover, #linkspan2:hover{
+			  color:#42B0E2; 
+			  background-color: white;
+		  }
+	#font3:hover, #linkspan3:hover{
+			  color:#42B0E2; 
+			  background-color: white; 
+		  }
+	#font4:hover, #linkspan4:hover{
+			  color:#42B0E2; 
+			  background-color: white;
+		  }
+.text_column {
+  width: 90%;
+  text-align: left;
+  font-weight: lighter;
+  line-height: 25px;
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #A3A3A3;
+}
+.galframe{
+  margin-bottom: 5%;
+  margin-top: 3px;
+}
+.framebox{
+  margin:5px 5px 10px 5px;
+  padding: 10px 5px 5px 5px;
+}
+.galhead{
+  margin-left: 5%;
+}
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+.cards{
+  padding-top: 10px;
+  width:300px;
+  }
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+.row1{
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+  box-sizing: border-box;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+input[type=text] {
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 0px solid #ccc;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #f6f6f6;;
+}
+.buttonInside{
+  position:relative;
+  margin-bottom:10px;
+}
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<nav class="navbar navbar-default navbar-fixed-top" style="width: 100%;">
+  <div class="container" style="width: 100%">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage"><i>PACT</i></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" style="width:100%">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">HOME</a></li>
+		<li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">ACTIVITIES</a></li>
+        <li><a href="#portfolio">GALLERY</a></li>
+        <li><a href="#media">MEDIA</a></li>
+        <li><a href="#donateus">DONATE US</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div class="jumbotron text-center">
+  <div class="col-md-4">
+  <img src="images/logo.png" width="40%" height="40%">
+</div>
+<h1>People Assist Charitable Trust</h1> 
+  <p>Main goal is to create awareness in rural areas and help them to lead better life</p> 
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="home" class="container-fluid ">
+    <div class="col-sm-8">
+      <h4><b>PACT</b></h4><br>
+      <p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+		</p>
+    </div>
+    <div class="col-sm-4" style="font-family: Montserrat, sans-serif;text-align: center;">
+
+      <h4><b>Find Us On Facebook</b></h4>
+		<br>
+		<br>
+		<br>
+		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FPACT-Trust-323317838355109&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        <p class="card-text"><small class="text-muted"></small></p>
+    <br>
+    <br>
+      </div>
+	 <div class="row">
+     
+    <div class="col-sm-8">
+      <br>
+		<br>
+		<br>
+      <h4>OUR VISION</h4><br>
+      <p>
+		
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+		</p>
+     	
+    </div>
+    <div class="col-sm-4">			
+		      <span class="glyphicon glyphicon-signal logo slideanim"></span>
+    </div>
+  </div>
+	<br>
+	<br>
+	<br>
+	<hr>
+	<div class="row">
+    <div class="col-sm-8">
+      <h4>OUR MISSION</h4><br>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+		
+    </div>
+		  <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo slideanim"></span>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="about" class="container-fluid text-center">
+  <div class="row">
+      <h2>About Us</h2><br>
+      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		
+		
+  </div>
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Container (Services Section) -->
+<div id="services" class="container-fluid text-center bg-grey">
+	<h2>ACTIVITIES</h2>
+<!--	<div class="container1">-->
+	<section class="intro">
+    <div class="col-sm-6">
+      <p>“The word ‘Charity’ connotes altruism in thought and action. It involves an idea of benefiting others rather than oneself” Supreme Court in the case Andhra Chamber of Commerce [1965] 55 ITR 722 (SC). </p>
+	  <p>Charity is a voluntary help either in money or kind to the needy. Collective efforts are always more fruitful. Hence, there are various Non-Governmental Organizations (NGOs) and non-profit entities constantly working on charitable activities by raising funds all over the world by forming either an institution or trust.
+	</p>
+	  </div>
+    <div class="col-sm-6">
+     
+      <p>Efforts of such institutions play a significant role in promoting economic development and the social welfare objectives of the Government. Their outreach and more localised approach helps to identify the needy and lend a supporting hand. For this reason, Indian government has provided various tax incentives and exemptions to charitable institutions, Section 80G being a significant one.</p>
+		<p>The following are some of the Activities that are carried out by the trust for the benefit of the people</p>
+    </div>
+	</section>
+	</div>	
+	<div class="container-fluid text-center bg-grey">
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/Sapling Plantation.jpg"><img src="images/Sapling Plantation.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>SAPLING PLANTATIONS</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/Medical camp.jpg"><img src="images/Medical camp.jpg" alt="Cinque Terre" class="cards"/></a></center>
+        <h4>MEDICAL CAMPS</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/Old-age home.jpg"><img src="images/Old-age home.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>FOOD SUPPLIES TO OLDAGE HOMES</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/Coaching classes.jpg"><img src="images/Coaching classes.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>FREE COACHING CLASSES</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    <div class="rcontainer-fluid text-center bg-grey">
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/sport.jpg"><img src="images/sport.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>SPORTS LEAGUE</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+       <center><a target="_blank" href="images/School adoption.jpg"><img src="images/School adoption.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>SCHOOL ADOPTION</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col col-sm-12 col-md-6 col-lg-3"> 
+        <center><a target="_blank" href="images/rain.jpg"><img src="images/rain.jpg" alt="Cinque Terre" class="cards"/></a></center>
+          <h4>RAIN WATER HARVESTING</h4>
+          <p class="text_column">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      </div>
+    </div>
+
+	
+	
+
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="portfolio" class="container-fluid text-center bg-grey">
+	 <div class="gallery bg-grey" style="color: #52BAD5">
+	  <h2 class="text-center">GALLERY</h2>
+	  <script src="https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js" async></script>
+      
+    <div style="font-size: 140%;margin: 15px;">
+      <div class="bg-grey framebox">
+        <p class="galhead">Blood Donation</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1ESgp8rryqLReEe8c7JiJC__g_vB_IOTU#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div>
+      <div class="bg-grey framebox"> 
+        <p  class="galhead">Mahila Rakshak Dal</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1pX-KLPTDrzjgJY3toOlg0kUFbwXnjW-P#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div> 
+      <div class="bg-grey framebox">
+        <p  class="galhead">Old Age Home</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1jX6kVKFgWhU_zgC7zWwuMuB247r_RN9U#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div> 
+      <div class="bg-grey framebox">
+        <p  class="galhead">Coaching Classes</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1YsOohVrIxYcz1ckS7rjDM8mfH-r7ul8Y#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div> 
+      <div class="bg-grey framebox">
+        <p  class="galhead">Polio</p> 
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1eGk4CXxsoRdMjC2LYyPCD2MwZBI7qCKV#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div>
+      <div class="bg-grey framebox">
+        <p  class="galhead">Sapling Plantation</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1XVFfSNKRvNfyqYLsO0jwIiKJgPlmSvn1#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div>
+      <div class="bg-grey framebox">
+        <p  class="galhead">Student Rewards</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=19yPmrGj1SGs4eDCh4kRk6IGQVqcahkJS#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div> 
+      <div class="bg-grey framebox">
+        <p  class="galhead">Village Development</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1Jy3JFBmbmBbDCLljsSGLb61AQZIZFvvz#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div>
+      <div class="bg-grey framebox">
+        <p  class="galhead">Womens' Day</p>
+        <iframe class="galframe" src="https://drive.google.com/embeddedfolderview?id=1no233P4N_07P-stGqGFWIyEkKp5uLJ2M#grid" width="100%" height="320" frameborder="0"></iframe>
+      </div>
+    </div>
+</div>
+<hr>
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="media" class="container-fluid text-center ">
+
+    <h2>media</h2> 
+    <div class="col-md-4">
+      <iframe width="470" height="315" src="https://www.youtube.com/embed/dMWOAl9aykY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       </div> 
+       <div class="col-md-4">
+        <iframe width="470" height="315" src="https://www.youtube.com/embed/7rQXFCsPpqU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         </div> 
+       <div class="col-md-4">
+        <iframe width="470" height="315" src="https://www.youtube.com/embed/lQQI43TrdlA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         </div>    
+         <br>
+         <br>
+
+        <a href='https://www.youtube.com/channel/UC-04BrfkKEU3qety9iq3hjw?feature=emb_ch_name_ex' target="_blank">click here for more videos</a>
+       <hr>
+  </div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="donateus" class="container-fluid text-center">
+    <h2>donate us</h2>
+    <br>
+    <div class="row1">
+        <div class="container">
+              <div class="col-50">
+                <h2><u>Bank Details</u></h2>
+                <i class="fa fa-user"></i>Name of A/c Holder</label><br>
+                <label>PEOPLE ASSIST CHARITABLE TRUST</label><br>
+                <i class="fa fa-envelope"></i> Email</label><br>
+                <label>peoplessist.charitabletrust@gmail.com</label><br>
+                <i class="fa fa-address-card-o"></i> Address</label><br>
+                <label>Andhra Bank, Bellary Road, Rayadurg,Anantapur District,Andhra Pradesh - 515865</label><br>
+                <i class="fa fa-institution"></i> IFSC Code</label><br>
+                <div class="buttonInside">
+                  <input  type="text" id="i1" value="ANDB0000487">
+                   <button onclick="myFunction()"><img src="https://img.icons8.com/material-outlined/24/000000/copy.png" width="20" height="20" style=" margin-top: 3px; margin-bottom: -2 px;"></button>
+                </div>
+                <i class="fa fa-institution"></i>Account Number</label><br>
+                <div class="buttonInside">
+                  <input  type="text" id="i2" value="048711100003527">
+                   <button onclick="myFunction()"><img src="https://img.icons8.com/material-outlined/24/000000/copy.png" width="20" height="20" style=" margin-top: 3px; margin-bottom: -2 px;"></button>
+                </div>
+              </div>
+          </div>
+  </div>
+  <hr>
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div id="contact" class="container-fluid text-center">
+  <h2>contact us</h2>
+ <div id="abtus" class="font0" style="background: #42B0E2"><center>
+    <div class="row">
+      <div class="col col-sm-6 col-md-6 col-lg-3"><center>
+        <a href="mailto:peoplessist.charitabletrust@gmail.com?Subject=About PACT" id="font1"  class="fa fa-envelope">
+        <p id="linkspan1" style="word-wrap:break-word;">peoplessist.charitable&#8203trust@gmail.com</p>
+        </a></center>
+      </div>
+      <div class="col col-sm-6 col-md-6 col-lg-3"><center>
+        <a href="tel:+919676500802 " id="font2"  class="fa fa-phone">
+        <figcaption id="linkspan2">+91 9676500802</figcaption>
+        </a></center>
+      </div>
+      <div class="col col-sm-6 col-md-6 col-lg-3"><center>
+        <a href="https://facebook.com/PACT-Trust-323317838355109" target="_blank" id="font3" class="fa fa-facebook">  <p id="linkspan3">PACT Trust</p>
+        </a></center>
+      </div>
+    
+      <div class="col col-sm-6 col-md-6 col-lg-3"><center>
+        <a href="https://www.youtube.com/channel/UC-04BrfkKEU3qety9iq3hjw" target="_blank" id="font4"  class="fa fa-youtube">
+        <figcaption id="linkspan4">PACT Trust</figcaption>
+        </a></center>
+      </div>
+    </div>
+    
+    <div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3420.1079079239234!2d76.86344807321721!3d14.588878250474737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb0ca49c13b6201%3A0xba7b2f477145ae67!2sGonabavi%2C%20Andhra%20Pradesh%20515863!5e0!3m2!1sen!2sin!4v1584274012619!5m2!1sen!2sin" frameborder="0" height="350" style="border:0;margin-top:2%;width:96%;" allowfullscreen="" aria-hidden="false">
+      </iframe>
+      <figcaption class="fa fa-map-marker font-italic" style="font-size: 150%;color:white"><i>&nbsp Gonabhavi village, Rayadug Taluk, Anantapur(Dist) Andhrapradesh <br> zip-code:515-863 </i> </figcaption>
+        
+    </div>
+    </center> 
+  </div>  
+</div>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+function myFunction() {
+  var copyText = document.getElementById("i1");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+function myFunction2() {
+  var copyText = document.getElementById("i2");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+</body>
+</html>
